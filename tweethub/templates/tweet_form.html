@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Create a Tweet</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+      body {
+        background-color: black;
+        color: white; 
+      }
+      .card {
+        background-color: #1a1a1a;
+        border: 1px solid #444;
+      }
+      .card-header, .card-body {
+        color: white;
+      }
+      .btn-primary {
+        background-color: #1da1f2;
+        border-color: #1da1f2;
+      }
+      .btn-primary:hover {
+        background-color: #0d8adf;
+        border-color: #0d8adf;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container mt-5">
+      <h1 class="text-center">Welcome to TweetHub</h1>
+      <div class="card mt-4">
+        <div class="card-header">
+          {% if form.instance.pk %}
+           <b>Edit your tweet</b>
+          {% else %}
+            Create your tweet
+          {% endif %}
+        </div>
+        <div class="card-body">
+          <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary btn-block mt-3">Submit Tweet</button>
+          </form>
+          <div class="mt-4 text-center">
+            <a href="{% url 'tweet_list' %}" class="btn btn-secondary">Back to TweetHub</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

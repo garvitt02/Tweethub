@@ -1,0 +1,80 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Final Project</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <style>
+    body {
+      background-color: black;
+      color: white; 
+    }
+  </style>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'tweet_list' %}">TweetHub</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            {% if user.is_authenticated %}
+              <li class="nav-item">
+                <form action="{% url 'logout' %}" method="post">
+                  {% csrf_token %}
+                  <button type="submit" class="btn btn-danger">Logout</button>
+                </form>
+              </li>
+            {% else %}
+              <li class="nav-item">
+                <a class="btn btn-light" href="{% url 'login' %}">Login</a>
+              </li>
+              <li class="nav-item">
+                <a class="btn btn-success" href="{% url 'register' %}">Register</a>
+              </li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container mt-5">
+      <h1 class="text-center">Welcome to TweetHub</h1>
+    </div>
+
+    <div class="container mt-5">
+      <h2 class="text-center mb-4">Why TweetHub?</h2>
+      <div class="row">
+        <div class="col-md-4 text-center">
+          <img src="{% static 'images/create.jpeg' %}" class="img-fluid rounded mb-3" alt="Feature 1">
+          <h4>Create New Tweets</h4>
+          <p>Share your thoughts and photos with the world on social media.</p>
+        </div>
+        <div class="col-md-4 text-center">
+          <img src="{% static 'images/likes.jpeg' %}" class="img-fluid rounded mb-3" alt="Feature 2">
+          <h4>Engage & React</h4>
+          <p>Like on tweets to interact with others.</p>
+        </div>
+        <div class="col-md-4 text-center">
+          <img src="{% static 'images/edit.jpeg' %}" class="img-fluid rounded mb-3" alt="Feature 3">
+          <h4>Edit And Delete</h4>
+          <p>Quickly edit and delete your tweets with ease</p>
+        </div>
+      </div>
+    </div>
+
+    <footer class="bg-dark text-white mt-2 p-4 text-center">
+      <p>&copy; Share your thoughts, one tweet at a time...</p>
+    </footer>
+
+ 
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+</html>
